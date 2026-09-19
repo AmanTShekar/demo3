@@ -1,0 +1,255 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { STAYS, buildWhatsAppLink, SITE } from "@/lib/site";
+import { useBooking } from "./BookingContext";
+import WhatsAppIcon from "./WhatsAppIcon";
+
+function nightsBetween(a: string, b: string) {
+  if (!a || !b) return 1;
+  const d1 = new Date(a).getTime();
+  const d2 = new Date(b).getTime();
+  const n = Math.round((d2 - d1) / 86400000);
+  return n > 0 ? n : 1;
+}
+
+export default function BookingModal() {
+  const { isOpen, stayId, closeBooking } = useBooking();
+  const [stay, setStay] = useState(stayId ?? STAYS[0].id);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [requests, setRequests] = useState("");
+  const [error, setError] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setStay(stayId ?? STAYS[0].id);
+      setError("");
+      setDone(false);
+    }
+  }, [isOpen, stayId]);
+
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => e.key === "Escape" && closeBooking();
+    if (isOpen) window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, [isOpen, closeBooking]);
+
+  const selected = useMemo(() => STAYS.find((s) => s.id === stay) ?? STAYS[0], [stay]);
+  const nights = nightsBetween(checkIn, checkOut);
+  const estimate = selected.price * nights;
+
+  if (!isOpen) return null;
+
+  const submit = () => {
+    if (name.trim().length < 2) return setError("Please enter your full name.");
+    if (!/^[6-9]\d{9}$/.test(phone.replace(/\s+/g, "").slice(-10)))
+      return setError("Enter a valid 10-digit Indian mobile number.");
+    if (!checkIn || !checkOut) return setError("Please select check-in and check-out dates.");
+    if (new Date(checkOut) <= new Date(checkIn)) return setError("Check-out must be after check-in.");
+    setError("");
+    setDone(true);
+    const link = buildWhatsAppLink({
+      stayName: selected.name,
+      name: name.trim(),
+      phone: phone.trim(),
+      checkIn,
+      checkOut,
+      adults,
+      children,
+      requests,
+      nights,
+      estimate,
+    });
+    setTimeout(() => window.open(link, "_blank"), 600);
+  };
+
+  const inputCls =
+    "w-full rounded-2xl border border-line bg-cream px-4 py-3 text-[14px] font-semibold text-ink outline-none focus:border-pine focus:ring-2 focus:ring-pine/15 placeholder:text-ink/30 placeholder:font-medium";
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
+      <div className="absolute inset-0 bg-ink/60 fade-in" onClick={closeBooking} />
+      <div className="relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-[24px] bg-paper sm:rounded-[24px] modal-in">
+        <div className="sticky top-0 flex items-center justify-between border-b border-line bg-paper px-6 py-5 sm:px-8">
+          <div>
+            <p className="eyebrow">WhatsApp booking</p>
+            <h2 className="font-display mt-1 text-[22px] font-semibold tracking-tight text-ink">Book your stay</h2>
+          </div>
+          <button
+            onClick={closeBooking}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-cream text-lg font-bold"
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+
+        {!done ? (
+          <div className="grid gap-5 px-6 py-6 sm:px-8">
+            <div>
+              <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                Select stay
+              </label>
+              <select value={stay} onChange={(e) => setStay(e.target.value)} className={inputCls}>
+                {STAYS.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name} — ₹{s.price.toLocaleString("en-IN")}/night
+                  </option>
+                ))}
+              </select>
+              <div className="mt-2.5 flex items-center justify-between rounded-2xl bg-pine px-5 py-3.5 text-[13px]">
+                <span className="font-semibold text-white/80">
+                  {nights} night{nights > 1 ? "s" : ""} · {adults} adult{adults > 1 ? "s" : ""}
+                  {children ? ` + ${children} kid${children > 1 ? "s" : ""}` : ""}
+                </span>
+                <span className="font-extrabold text-white">
+                  Est. ₹{estimate.toLocaleString("en-IN")}
+                </span>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Full name *
+                </label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Priya Kapoor"
+                  className={inputCls}
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Mobile number *
+                </label>
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value.replace(/[^\d+\s]/g, ""))}
+                  placeholder="98765 43210"
+                  inputMode="tel"
+                  maxLength={13}
+                  className={inputCls}
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Check-in *
+                </label>
+                <input
+                  type="date"
+                  value={checkIn}
+                  min={new Date().toISOString().split("T")[0]}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                  className={inputCls}
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Check-out *
+                </label>
+                <input
+                  type="date"
+                  value={checkOut}
+                  min={checkIn || new Date().toISOString().split("T")[0]}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                  className={inputCls}
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Adults
+                </label>
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setAdults(Math.max(1, adults - 1))} className="h-10 w-10 rounded-full border border-line font-bold hover:bg-cream">−</button>
+                  <span className="w-6 text-center font-bold">{adults}</span>
+                  <button onClick={() => setAdults(Math.min(12, adults + 1))} className="h-10 w-10 rounded-full border border-line font-bold hover:bg-cream">+</button>
+                </div>
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                  Kids
+                </label>
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setChildren(Math.max(0, children - 1))} className="h-10 w-10 rounded-full border border-line font-bold hover:bg-cream">−</button>
+                  <span className="w-6 text-center font-bold">{children}</span>
+                  <button onClick={() => setChildren(Math.min(8, children + 1))} className="h-10 w-10 rounded-full border border-line font-bold hover:bg-cream">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
+                Special requests <span className="font-medium normal-case tracking-normal text-ink/40">(optional)</span>
+              </label>
+              <textarea
+                value={requests}
+                onChange={(e) => setRequests(e.target.value)}
+                placeholder="Bonfire, birthday setup, late check-in, food preference..."
+                rows={3}
+                className={`${inputCls} resize-none`}
+              />
+            </div>
+
+            {error && (
+              <p className="rounded-2xl bg-[#fdecec] px-4 py-3 text-[13px] font-bold text-[#b91c1c]">
+                {error}
+              </p>
+            )}
+
+            <button
+              onClick={submit}
+              className="flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-6 py-4 text-[15px] font-bold text-white hover:brightness-95"
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              Confirm &amp; send on WhatsApp
+            </button>
+            <p className="text-center text-[12px] font-medium text-moss">
+              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · No advance to enquire
+            </p>
+          </div>
+        ) : (
+          <div className="px-6 py-10 text-center sm:px-10">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage text-3xl text-pine">
+              ✓
+            </div>
+            <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight">Opening WhatsApp…</h3>
+            <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-ink/60">
+              Your enquiry for <b className="text-ink">{selected.name}</b> ({nights} night{nights > 1 ? "s" : ""}, ₹
+              {estimate.toLocaleString("en-IN")}) is ready. Just press send in WhatsApp — we reply
+              within minutes, 8am–11pm.
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-2 sm:flex-row">
+              <button
+                onClick={() => {
+                  const link = buildWhatsAppLink({
+                    stayName: selected.name, name: name.trim(), phone: phone.trim(),
+                    checkIn, checkOut, adults, children, requests, nights, estimate,
+                  });
+                  window.open(link, "_blank");
+                }}
+                className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white"
+              >
+                <WhatsAppIcon className="h-4.5 w-4.5" />
+                Re-open WhatsApp
+              </button>
+              <button
+                onClick={closeBooking}
+                className="rounded-full border border-line px-6 py-3.5 text-sm font-bold"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

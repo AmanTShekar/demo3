@@ -1,20 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import Hero from "@/components/Hero";
-import { StaysPreview, WhyBook, Location } from "@/components/Sections";
+import { StaysFull } from "@/components/Sections";
 import StayDetailModal from "@/components/StayDetailModal";
 import type { Stay } from "@/lib/site";
 
-export default function Home() {
+export default function StaysPage() {
   const [viewing, setViewing] = useState<Stay | null>(null);
-
   return (
     <>
-      <Hero />
-      <StaysPreview onView={setViewing} />
-      <WhyBook />
-      <Location />
+      <StaysFull onView={setViewing} />
       <StayDetailModal stay={viewing} onClose={() => setViewing(null)} />
     </>
   );
