@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 
-type P = { className?: string };
+type P = { className?: string; strokeWidth?: number };
 
-function S({ className = "h-5 w-5", children }: P & { children: ReactNode }) {
+function S({ className = "h-5 w-5", strokeWidth = 1.8, children }: P & { children: ReactNode }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.8}
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
