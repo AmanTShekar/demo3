@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 import { useBooking } from "./BookingContext";
 import WhatsAppIcon from "./WhatsAppIcon";
+import { IconClose, IconMenu } from "./Icons";
 
 export default function Navbar() {
   const { openBooking } = useBooking();
@@ -33,9 +34,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brass text-lg font-bold text-white">
-            K
-          </span>
+          <img src="/apple_cottage.PNG" alt={SITE.name} className="h-10 w-10 rounded-2xl object-cover" />
           <span className="leading-tight">
             <span
               className={`font-display block text-[18px] font-semibold tracking-tight ${
@@ -49,7 +48,7 @@ export default function Navbar() {
                 solid ? "text-moss" : "text-white/70"
               }`}
             >
-              Kasol • Parvati Valley
+              {`${SITE.location} • Parvati Valley`}
             </span>
           </span>
         </Link>
@@ -92,7 +91,7 @@ export default function Navbar() {
             solid ? "border-line text-ink" : "border-white/30 text-white"
           }`}
         >
-          <span className="text-xl leading-none">{open ? "×" : "☰"}</span>
+          {open ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
         </button>
       </div>
 

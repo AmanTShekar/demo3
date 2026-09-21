@@ -56,6 +56,8 @@ export default function BookingModal() {
     setDone(true);
     const link = buildWhatsAppLink({
       stayName: selected.name,
+      stayCapacity: selected.guests,
+      units: 1,
       name: name.trim(),
       phone: phone.trim(),
       checkIn,
@@ -230,8 +232,18 @@ export default function BookingModal() {
               <button
                 onClick={() => {
                   const link = buildWhatsAppLink({
-                    stayName: selected.name, name: name.trim(), phone: phone.trim(),
-                    checkIn, checkOut, adults, children, requests, nights, estimate,
+                    stayName: selected.name,
+                    stayCapacity: selected.guests,
+                    units: 1,
+                    name: name.trim(),
+                    phone: phone.trim(),
+                    checkIn,
+                    checkOut,
+                    adults,
+                    children,
+                    requests,
+                    nights,
+                    estimate,
                   });
                   window.open(link, "_blank");
                 }}

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 import { useBooking } from "./BookingContext";
-import { IconStar, IconArrowDown, IconCalendar, IconUsers } from "./Icons";
+import { IconStar, IconArrowDown, IconCalendar, IconUsers, IconFlame } from "./Icons";
+import { MountainSilhouette, Snowfall, MistBand } from "./Scene";
 
 export default function Hero() {
   const { openBooking } = useBooking();
@@ -33,11 +34,15 @@ export default function Hero() {
         <div className="absolute inset-0 bg-ink/55" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-32 pb-10 sm:px-6 sm:pt-36">
+      <Snowfall count={24} />
+      <MistBand />
+      <MountainSilhouette />
+
+      <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-32 pb-16 sm:px-6 sm:pt-36">
         <div className="max-w-4xl">
           <div className="hero-rise inline-flex items-center gap-2.5 rounded-full bg-paper px-4 py-2 text-[11px] font-extrabold tracking-[0.18em] text-ink uppercase" style={{ animationDelay: "0ms" }}>
-            <span className="h-2 w-2 rounded-full bg-leaf" />
-            Kasol · Mist · Snow · Riverside
+            <span className="pulse-soft h-2 w-2 rounded-full bg-leaf" />
+            Open now · Oct dates filling fast
           </div>
 
           <h1
@@ -60,8 +65,9 @@ export default function Hero() {
           <div className="hero-rise mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "270ms" }}>
             <button
               onClick={() => openBooking(null)}
-              className="rounded-full bg-brass px-8 py-4 text-[15px] font-bold text-white transition-transform duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
+              className="flex items-center gap-2 rounded-full bg-brass px-8 py-4 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
             >
+              <IconFlame className="h-4.5 w-4.5" />
               Check availability
             </button>
             <a
@@ -144,7 +150,7 @@ export default function Hero() {
         </a>
       </div>
 
-      <div className="relative bg-pine">
+      <div className="relative z-[2] bg-pine">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 px-4 sm:px-6 lg:grid-cols-4">
           {[
             ["6", "Curated stays"],

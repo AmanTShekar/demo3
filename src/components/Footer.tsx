@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brass text-lg font-bold text-white">K</span>
+            <img src="/apple_cottage.PNG" alt={SITE.name} className="h-10 w-10 rounded-2xl object-cover" />
             <span className="font-display text-xl font-semibold tracking-tight">{SITE.name}</span>
           </div>
           <p className="mt-4 max-w-sm text-[13.5px] leading-relaxed text-white/65">

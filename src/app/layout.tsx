@@ -20,9 +20,9 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — Tents, Cottages & Mountain-View Stays in Kasol`,
+  title: `${SITE.name} — Cozy Mountain Stays in Kalga, Parvati Valley`,
   description:
-    "Handpicked tents, cottages, cabins and glass rooms in Kasol & Parvati Valley. Mist mornings, snow peaks, riverside bonfires. Book in 2 minutes on WhatsApp.",
+    "Apple Cottage Homestay & Cafe Kalga offers cozy cottages and mountain stays in Kalga, Parvati Valley with easy access to Kasol, treks and valley views. Book in 2 minutes on WhatsApp.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -51,7 +51,6 @@ export default function StayCard({
           {stay.rating} <span className="font-medium text-moss">({stay.reviews})</span>
         </div>
       </div>
-
       <div className="p-6">
         <p className="text-[11px] font-extrabold tracking-[0.16em] text-moss uppercase">{stay.location}</p>
         <h3 className="font-display mt-1.5 text-[21px] leading-snug font-semibold tracking-tight text-ink">
@@ -83,6 +82,10 @@ export default function StayCard({
           </div>
           <p className="mt-0.5 text-[12px] font-medium text-moss">
             per night {off ? <span className="font-bold text-leaf">· {off}% off</span> : null} · up to {stay.guests} guests
+          </p>
+          <p className="mt-1.5 inline-flex items-center gap-1.5 text-[11.5px] font-bold text-brassdeep">
+            <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-brass" />
+            Oct dates filling fast
           </p>
         </div>
 

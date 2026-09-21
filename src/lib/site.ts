@@ -1,11 +1,12 @@
 // Central config — edit your WhatsApp number here (country code + number, no + or spaces)
 export const SITE = {
-  name: "Kasol Mist Stays",
-  tagline: "Tents, cottages & mountain-view stays in Parvati Valley",
+  name: "Apple Cottage Homestay & Cafe Kalga",
+  tagline: "Cozy mountain stays in Kalga, Parvati Valley",
   phoneDisplay: "+91 98765 43210",
   whatsapp: "919876543210",
   email: "hello@kasolmiststays.in",
-  address: "Old Kasol Road, Parvati Valley, Kasol, Himachal Pradesh 175105",
+  location: "Kalga",
+  address: "Kalga, Parvati Valley, Himachal Pradesh",
   checkIn: "12:00 PM",
   checkOut: "10:30 AM",
 };
@@ -212,8 +213,11 @@ export const TESTIMONIALS = [
 
 export function buildWhatsAppLink(data: {
   stayName: string;
+  stayCapacity: number;
+  units: number;
   name: string;
   phone: string;
+  email?: string;
   checkIn: string;
   checkOut: string;
   adults: number;
@@ -222,19 +226,25 @@ export function buildWhatsAppLink(data: {
   nights: number;
   estimate: number;
 }) {
+  const fmt = (d: string) => {
+    const [y, m, day] = d.split("-");
+    return d ? `${day}-${m}-${y}` : "";
+  };
   const lines = [
-    `New booking enquiry — ${SITE.name}`,
-    `--------------------------`,
-    `Stay: ${data.stayName}`,
-    `Name: ${data.name}`,
-    `Phone: ${data.phone}`,
-    `Check-in: ${data.checkIn}`,
-    `Check-out: ${data.checkOut}`,
-    `Guests: ${data.adults} adults${data.children ? ` + ${data.children} kids` : ""}`,
-    `Nights: ${data.nights}`,
-    `Est. total: Rs.${data.estimate.toLocaleString("en-IN")}`,
+    `*NEW BOOKING ENQUIRY — ${SITE.name}*`,
+    `------------------------------`,
+    `*Stay:* ${data.stayName} (${data.stayCapacity} pax/unit)`,
+    `*Units needed:* ${data.units}`,
+    `*Check-in:* ${fmt(data.checkIn)}`,
+    `*Check-out:* ${fmt(data.checkOut)}`,
+    `*Nights:* ${data.nights}`,
+    `*Guests:* ${data.adults} adult${data.adults > 1 ? "s" : ""}${data.children ? ` + ${data.children} child${data.children > 1 ? "ren" : ""}` : ""} (${data.adults + data.children} total)`,
+    `*Name:* ${data.name}`,
+    `*Phone:* ${data.phone}`,
   ];
-  if (data.requests?.trim()) lines.push(`Requests: ${data.requests.trim()}`);
-  lines.push(`--------------------------`, `Please confirm availability. Thank you!`);
+  if (data.email?.trim()) lines.push(`*Email:* ${data.email.trim()}`);
+  lines.push(`*Est. total:* ₹${data.estimate.toLocaleString("en-IN")} (${data.nights} night${data.nights > 1 ? "s" : ""} × ${data.units} unit${data.units > 1 ? "s" : ""})`);
+  if (data.requests?.trim()) lines.push(`*Special requests:* ${data.requests.trim()}`);
+  lines.push(`------------------------------`, `_Sent from the website booking form_`, `Please confirm availability and price. Thank you!`);
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
