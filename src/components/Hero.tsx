@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2400&auto=format&fit=crop"
-          alt="Snow mountains above Kasol, Parvati Valley"
+          alt="Snow mountains above Kalga, Parvati Valley"
           fill
           priority
           className="object-cover will-change-transform"
@@ -49,17 +49,17 @@ export default function Hero() {
             className="font-display hero-rise mt-6 text-[42px] leading-[1.02] font-semibold tracking-tight text-white sm:text-7xl"
             style={{ animationDelay: "90ms" }}
           >
-            Wake up above
+            Wake up in
             <br />
-            the clouds in Kasol.
+            Apple Cottage, Kalga.
           </h1>
 
           <p
             className="hero-rise mt-5 max-w-xl text-[15px] leading-relaxed text-white/80 sm:text-lg"
             style={{ animationDelay: "180ms" }}
           >
-            {SITE.tagline}. Six handpicked tents, cottages and glass rooms —
-            bonfires, misty mornings and snow peaks. From ₹999, booked on WhatsApp in 2 minutes.
+            {SITE.tagline}. Private rooms and a friendly dorm with attached washrooms, geyser hot
+            water and free Wi-Fi. From ₹300 per person, confirmed on WhatsApp in minutes.
           </p>
 
           <div className="hero-rise mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "270ms" }}>
@@ -74,7 +74,7 @@ export default function Hero() {
               href="#stays"
               className="rounded-full border border-white/40 px-8 py-4 text-[15px] font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
             >
-              Explore stays
+              Explore rooms
             </a>
           </div>
 
@@ -86,7 +86,7 @@ export default function Hero() {
               <IconStar className="h-3.5 w-3.5 text-brass" /> 4.8 · 1,280+ reviews
             </span>
             <span>Free reschedule once</span>
-            <span>Bonfire + meals included</span>
+            <span>Pickup from Bhuntar available</span>
           </div>
         </div>
 
@@ -134,7 +134,7 @@ export default function Hero() {
               onClick={() => openBooking(null)}
               className="col-span-2 rounded-2xl bg-pine px-10 py-4 text-[15px] font-bold text-white hover:bg-pinedeep lg:col-span-1"
             >
-              Search stays
+              Check rooms
             </button>
           </div>
         </div>
@@ -153,9 +153,9 @@ export default function Hero() {
       <div className="relative z-[2] bg-pine">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 px-4 sm:px-6 lg:grid-cols-4">
           {[
-            ["6", "Curated stays"],
-            ["12k+", "Happy guests"],
-            ["4.8 / 5", "Average rating"],
+            ["3", "Stay options"],
+            ["5", "Private rooms"],
+            ["₹300", "Dorm per person"],
             ["2 min", "WhatsApp booking"],
           ].map(([n, l]) => (
             <div key={l} className="px-4 py-5 text-center">

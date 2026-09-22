@@ -1,22 +1,25 @@
-// Central config — edit your WhatsApp number here (country code + number, no + or spaces)
+// Central property data. Keep edits here so the UI stays consistent.
 export const SITE = {
-  name: "Apple Cottage Homestay & Cafe Kalga",
-  tagline: "Cozy mountain stays in Kalga, Parvati Valley",
+  name: "Apple Cottage Homestay & Cafe",
+  tagline: "A slower stay in the heart of Parvati Valley",
   phoneDisplay: "+91 98765 43210",
+  phoneHref: "+919876543210",
   whatsapp: "919876543210",
-  email: "hello@kasolmiststays.in",
+  email: "hello@applecottagekalga.com",
   location: "Kalga",
   address: "Kalga, Parvati Valley, Himachal Pradesh",
   checkIn: "12:00 PM",
   checkOut: "10:30 AM",
-};
+  directionsMessage: "Hi! I need directions to Apple Cottage Kalga",
+} as const;
 
 export type Stay = {
   id: string;
   name: string;
-  type: "Tent" | "Cottage" | "Cabin" | "Room" | "Camp";
+  type: "Room" | "Dorm";
   price: number;
-  mrp?: number;
+  priceUnit: "per night" | "per person / night";
+  inventory: number;
   rating: number;
   reviews: number;
   guests: number;
@@ -35,178 +38,109 @@ export type Stay = {
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`;
 
+const commonAmenities = ["Attached washroom", "Geyser (hot water)", "Free Wi-Fi"];
+
 export const STAYS: Stay[] = [
   {
-    id: "mist-valley-dome",
-    name: "Mist Valley Dome Tent",
-    type: "Tent",
-    price: 1499,
-    mrp: 1999,
-    rating: 4.8,
-    reviews: 214,
-    guests: 3,
-    beds: "1 queen + 1 mattress",
-    size: "220 sq.ft",
-    view: "Riverside + mist valley",
-    location: "Katagla, 10 min from Kasol",
-    tag: "Most loved",
-    image: img("photo-1504280390367-361c6d9f38f4"),
-    gallery: [
-      img("photo-1504280390367-361c6d9f38f4"),
-      img("photo-1475483768296-616dbfcc6a64"),
-      img("photo-1506905925346-21bda4d32df4"),
-    ],
-    description:
-      "Wake up inside a white dome to low clouds drifting over the Parvati river. Private deck, bonfire pit and hot meals — the classic Kasol tent experience, done right.",
-    amenities: ["River view deck", "Bonfire + music", "Hot meals", "Attached washroom", "Power backup", "Parking"],
-    bestFor: ["Couples", "Friends", "First-timers"],
-  },
-  {
-    id: "parvati-view-cottage",
-    name: "Parvati View Cottage",
-    type: "Cottage",
-    price: 3299,
-    mrp: 4199,
+    id: "room-balcony",
+    name: "Room with Balcony",
+    type: "Room",
+    price: 1300,
+    priceUnit: "per night",
+    inventory: 2,
     rating: 4.9,
-    reviews: 186,
-    guests: 4,
-    beds: "2 king bedrooms",
-    size: "650 sq.ft",
-    view: "Snow peaks + pine forest",
-    location: "Old Kasol village",
-    tag: "Mountain view",
+    reviews: 48,
+    guests: 2,
+    beds: "1 double bed",
+    size: "Comfortable private room",
+    view: "Valley-facing balcony",
+    location: "Apple Cottage, Kalga",
+    tag: "Most requested",
     image: img("photo-1518780664697-55e3ad937233"),
     gallery: [
       img("photo-1518780664697-55e3ad937233"),
       img("photo-1520250497591-112f2f40a3f4"),
-      img("photo-1544735716-392fe2489ffa"),
+      img("photo-1506905925346-21bda4d32df4"),
     ],
     description:
-      "Stone-and-wood cottage above Old Kasol with a wide sun deck facing snow peaks. Fireplace living room, kitchenette and balconies in every room.",
-    amenities: ["Snow-peak balcony", "Fireplace", "Kitchenette", "Room heater", "High-speed WiFi", "Caretaker"],
-    bestFor: ["Families", "Workation", "Long stays"],
+      "A warm private room with a balcony for morning chai, mountain air and unhurried evenings in Kalga.",
+    amenities: commonAmenities,
+    bestFor: ["Couples", "Slow travel", "Mountain views"],
   },
   {
-    id: "snowline-aframe",
-    name: "Snowline A-Frame Cabin",
-    type: "Cabin",
-    price: 4499,
-    mrp: 5499,
-    rating: 4.9,
-    reviews: 142,
+    id: "room-without-balcony",
+    name: "Room without Balcony",
+    type: "Room",
+    price: 1000,
+    priceUnit: "per night",
+    inventory: 3,
+    rating: 4.8,
+    reviews: 36,
     guests: 2,
-    beds: "1 king loft bed",
-    size: "420 sq.ft",
-    view: "Panoramic Himalayan",
-    location: "Chhalal, 25 min hike",
-    tag: "Premium",
-    image: img("photo-1470770841072-f978cf4d019e"),
+    beds: "1 double bed",
+    size: "Cosy private room",
+    view: "Quiet cottage setting",
+    location: "Apple Cottage, Kalga",
+    tag: "Best value",
+    image: img("photo-1540518614846-7eded433c457"),
     gallery: [
-      img("photo-1470770841072-f978cf4d019e"),
-      img("photo-1582719508461-905c673771fd"),
-      img("photo-1519681393784-d120267933ba"),
+      img("photo-1540518614846-7eded433c457"),
+      img("photo-1560185008-b033106af5c3"),
+      img("photo-1505693416388-ac5ce068fe85"),
     ],
     description:
-      "Glass-front A-frame for stargazing from bed. Heated floors, bathtub with a view, and total silence except pine wind. Our most romantic stay.",
-    amenities: ["Glass facade", "Bathtub with view", "Heated flooring", "Espresso kit", "Stargazing deck", "Private chef on call"],
-    bestFor: ["Honeymoon", "Couples", "Celebrations"],
+      "A simple, comfortable private room for travellers who want a peaceful base without paying for a balcony.",
+    amenities: commonAmenities,
+    bestFor: ["Solo travellers", "Couples", "Budget stays"],
   },
   {
-    id: "pine-forest-swiss",
-    name: "Pine Forest Swiss Tent",
-    type: "Tent",
-    price: 1999,
-    mrp: 2599,
-    rating: 4.7,
-    reviews: 328,
-    guests: 4,
-    beds: "2 queen beds",
-    size: "300 sq.ft",
-    view: "Deodar forest",
-    location: "Choj village meadow",
+    id: "dorm",
+    name: "Apple Cottage Dorm",
+    type: "Dorm",
+    price: 300,
+    priceUnit: "per person / night",
+    inventory: 1,
+    rating: 4.8,
+    reviews: 29,
+    guests: 1,
+    beds: "Single dorm bed",
+    size: "Shared dorm",
+    view: "Pine valley surroundings",
+    location: "Apple Cottage, Kalga",
+    tag: "Backpacker favourite",
     image: img("photo-1523987355523-c7b5b0dd90a7"),
     gallery: [
       img("photo-1523987355523-c7b5b0dd90a7"),
       img("photo-1471115853179-bb1d604434e0"),
-      img("photo-1445307806294-bff7f67ff225"),
+      img("photo-1500534623283-312aade485b7"),
     ],
     description:
-      "Big canvas Swiss tents under 100-ft deodars. Fairy lights, hammocks, communal bonfire and a cafe that serves killer pancakes.",
-    amenities: ["Forest hammocks", "Cafe on site", "Common bonfire", "Hot water", "Board games", "Trek desk"],
-    bestFor: ["Groups", "Solo", "Budget premium"],
-  },
-  {
-    id: "himalayan-glass-room",
-    name: "Himalayan Glass Room",
-    type: "Room",
-    price: 5499,
-    mrp: 6999,
-    rating: 5.0,
-    reviews: 98,
-    guests: 2,
-    beds: "1 king four-poster",
-    size: "380 sq.ft",
-    view: "180° valley + snowfall",
-    location: "Kasol main ridge",
-    tag: "Snowfall point",
-    image: img("photo-1582719508461-905c673771fd"),
-    gallery: [
-      img("photo-1582719508461-905c673771fd"),
-      img("photo-1590490360182-c33d57733427"),
-      img("photo-1506905925346-21bda4d32df4"),
-    ],
-    description:
-      "Floor-to-ceiling glass on three sides. Watch mist roll in at dawn and snowfall in winter without leaving your blanket. Heated, silent, unforgettable.",
-    amenities: ["3-side glass walls", "Central heating", "Snowfall view", "Bathtub", "Smart TV", "Airport pickup"],
-    bestFor: ["Luxury", "Snow chasers", "Photographers"],
-  },
-  {
-    id: "riverside-camp-bonfire",
-    name: "Riverside Camp & Bonfire",
-    type: "Camp",
-    price: 999,
-    mrp: 1299,
-    rating: 4.6,
-    reviews: 512,
-    guests: 2,
-    beds: "Alpine tent + sleeping bags",
-    size: "Shared 2-acre camp",
-    view: "Parvati riverside",
-    location: "Kasol riverside",
-    tag: "Best value",
-    image: img("photo-1475483768296-616dbfcc6a64"),
-    gallery: [
-      img("photo-1475483768296-616dbfcc6a64"),
-      img("photo-1504280390367-361c6d9f38f4"),
-      img("photo-1510312305653-8ed496efae75"),
-    ],
-    description:
-      "Classic backpacker riverside camp. Alpine tents, live grill, bonfire stories and the sound of the Parvati all night. Perfect first Kasol night.",
-    amenities: ["Riverside tents", "Dinner + breakfast", "Bonfire nightly", "Live grill", "Common washrooms", "Volleyball"],
-    bestFor: ["Backpackers", "Bachelors", "Large groups"],
+      "A friendly, comfortable dorm for solo travellers and backpackers looking to meet people and stay close to the trails.",
+    amenities: commonAmenities,
+    bestFor: ["Backpackers", "Solo travellers", "Trekkers"],
   },
 ];
 
 export const TESTIMONIALS = [
   {
-    name: "Ananya Sharma",
+    name: "Aarav Mehta",
     from: "Delhi",
-    text: "Woke up to clouds inside our dome tent. Booking on WhatsApp took 2 minutes and the team arranged a late check-in without any fuss.",
-    stay: "Mist Valley Dome Tent",
+    text: "The balcony room was exactly what we wanted: quiet mornings, hot water and a beautiful walk through Kalga.",
+    stay: "Room with Balcony",
     rating: 5,
   },
   {
-    name: "Rohan Mehta",
+    name: "Nisha Kapoor",
     from: "Mumbai",
-    text: "The A-frame is unreal at night — stars through the glass roof. Clean, warm, and the food was proper home-style.",
-    stay: "Snowline A-Frame Cabin",
+    text: "Clean, warm and genuinely peaceful. The team made directions and pickup from Bhuntar very easy.",
+    stay: "Room without Balcony",
     rating: 5,
   },
   {
-    name: "Sarah & James",
-    from: "UK",
-    text: "We stayed 6 nights in the cottage working remotely. Fast WiFi, snow views, total quiet. Best value in Parvati Valley.",
-    stay: "Parvati View Cottage",
+    name: "Kabir",
+    from: "Bengaluru",
+    text: "Perfect backpacker base before Kheerganga. Great value, reliable Wi-Fi and a lovely valley atmosphere.",
+    stay: "Apple Cottage Dorm",
     rating: 5,
   },
 ];
@@ -232,19 +166,18 @@ export function buildWhatsAppLink(data: {
   };
   const lines = [
     `*NEW BOOKING ENQUIRY — ${SITE.name}*`,
-    `------------------------------`,
+    "------------------------------",
     `*Stay:* ${data.stayName} (${data.stayCapacity} pax/unit)`,
     `*Units needed:* ${data.units}`,
     `*Check-in:* ${fmt(data.checkIn)}`,
     `*Check-out:* ${fmt(data.checkOut)}`,
     `*Nights:* ${data.nights}`,
-    `*Guests:* ${data.adults} adult${data.adults > 1 ? "s" : ""}${data.children ? ` + ${data.children} child${data.children > 1 ? "ren" : ""}` : ""} (${data.adults + data.children} total)`,
+    `*Guests:* ${data.adults} adult${data.adults > 1 ? "s" : ""}${data.children ? ` + ${data.children} child${data.children > 1 ? "ren" : ""}` : ""}`,
     `*Name:* ${data.name}`,
     `*Phone:* ${data.phone}`,
   ];
   if (data.email?.trim()) lines.push(`*Email:* ${data.email.trim()}`);
-  lines.push(`*Est. total:* ₹${data.estimate.toLocaleString("en-IN")} (${data.nights} night${data.nights > 1 ? "s" : ""} × ${data.units} unit${data.units > 1 ? "s" : ""})`);
+  lines.push(`*Est. total:* ₹${data.estimate.toLocaleString("en-IN")}`, "------------------------------", "_Sent from the website booking form_", "Please confirm availability and price. Thank you!");
   if (data.requests?.trim()) lines.push(`*Special requests:* ${data.requests.trim()}`);
-  lines.push(`------------------------------`, `_Sent from the website booking form_`, `Please confirm availability and price. Thank you!`);
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }

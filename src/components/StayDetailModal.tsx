@@ -46,7 +46,7 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
             <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">{stay.name}</h2>
             <div className="text-right">
               <div className="text-2xl font-extrabold tracking-tight">₹{stay.price.toLocaleString("en-IN")}</div>
-              <div className="text-[12px] font-medium text-moss">per night + taxes</div>
+              <div className="text-[12px] font-medium text-moss">{stay.priceUnit} · {stay.inventory} available</div>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
               onClick={() => { onClose(); openBooking(stay.id); }}
               className="flex-1 rounded-full bg-brass px-6 py-4 text-[15px] font-bold text-white hover:bg-brassdeep"
             >
-              Book this stay — ₹{stay.price.toLocaleString("en-IN")}/night
+              Enquire now — ₹{stay.price.toLocaleString("en-IN")} {stay.priceUnit}
             </button>
             <button
               onClick={onClose}

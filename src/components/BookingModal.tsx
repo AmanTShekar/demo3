@@ -28,6 +28,8 @@ export default function BookingModal() {
 
   useEffect(() => {
     if (isOpen) {
+      // Reset the form when a new booking session opens.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStay(stayId ?? STAYS[0].id);
       setError("");
       setDone(false);
@@ -42,7 +44,7 @@ export default function BookingModal() {
 
   const selected = useMemo(() => STAYS.find((s) => s.id === stay) ?? STAYS[0], [stay]);
   const nights = nightsBetween(checkIn, checkOut);
-  const estimate = selected.price * nights;
+  const estimate = selected.price * nights * (selected.type === "Dorm" ? adults : 1);
 
   if (!isOpen) return null;
 
@@ -96,12 +98,12 @@ export default function BookingModal() {
           <div className="grid gap-5 px-6 py-6 sm:px-8">
             <div>
               <label className="mb-2 block text-[11px] font-extrabold tracking-[0.16em] text-ink/70 uppercase">
-                Select stay
+                Select room or dorm
               </label>
               <select value={stay} onChange={(e) => setStay(e.target.value)} className={inputCls}>
                 {STAYS.map((s) => (
                   <option key={s.id} value={s.id}>
-                    {s.name} — ₹{s.price.toLocaleString("en-IN")}/night
+                    {s.name} — ₹{s.price.toLocaleString("en-IN")} {s.priceUnit}
                   </option>
                 ))}
               </select>
@@ -214,7 +216,7 @@ export default function BookingModal() {
               Confirm &amp; send on WhatsApp
             </button>
             <p className="text-center text-[12px] font-medium text-moss">
-              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · No advance to enquire
+              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · Dorm estimate is per adult · No advance to enquire
             </p>
           </div>
         ) : (

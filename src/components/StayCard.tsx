@@ -23,8 +23,6 @@ export default function StayCard({
   onView?: (s: Stay) => void;
 }) {
   const { openBooking } = useBooking();
-  const off = stay.mrp ? Math.round((1 - stay.price / stay.mrp) * 100) : 0;
-
   return (
     <article className="group overflow-hidden rounded-[20px] border border-line bg-paper card-shadow transition-all duration-500 hover:-translate-y-1.5 hover:card-shadow-lg">
       <div className="relative h-60 overflow-hidden img-zoom bg-sage">
@@ -74,18 +72,13 @@ export default function StayCard({
             <span className="text-[23px] font-extrabold tracking-tight text-ink">
               ₹{stay.price.toLocaleString("en-IN")}
             </span>
-            {stay.mrp && (
-              <span className="text-[13px] font-medium text-ink/35 line-through">
-                ₹{stay.mrp.toLocaleString("en-IN")}
-              </span>
-            )}
           </div>
           <p className="mt-0.5 text-[12px] font-medium text-moss">
-            per night {off ? <span className="font-bold text-leaf">· {off}% off</span> : null} · up to {stay.guests} guests
+            {stay.priceUnit} · up to {stay.guests} guest{stay.guests > 1 ? "s" : ""} · {stay.inventory} available
           </p>
           <p className="mt-1.5 inline-flex items-center gap-1.5 text-[11.5px] font-bold text-brassdeep">
             <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-brass" />
-            Oct dates filling fast
+            Enquire for live availability
           </p>
         </div>
 

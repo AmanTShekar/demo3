@@ -48,9 +48,9 @@ export function Experience() {
     <section id="experience" className="bg-paper">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
         <Reveal>
-          <p className="eyebrow">The Kasol experience</p>
+          <p className="eyebrow">The Kalga experience</p>
           <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-[42px] sm:leading-[1.1]">
-            Mountainside views, mist in the pines, snow when you're lucky.
+            Mountainside views, mist in the pines, snow when you&apos;re lucky.
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -97,11 +97,11 @@ export function StaysPreview({ onView }: { onView: (s: Stay) => void }) {
             <div>
               <p className="eyebrow">Handpicked stays</p>
               <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-[42px]">
-                Tents, cottages & glass rooms
+                Stay your way at Apple Cottage
               </h2>
               <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-ink/60">
-                Every stay is visited, slept in and rated by our team. Riverside tents for the vibe,
-                cottages for comfort, glass rooms for snowfall.
+                Choose a balcony room, a quiet room without a balcony, or an easy-going dorm. All
+                three options are in Kalga and can be confirmed directly on WhatsApp.
               </p>
             </div>
             <Link
@@ -137,14 +137,14 @@ export function StaysFull({ onView }: { onView: (s: Stay) => void }) {
   return (
     <div className="mx-auto max-w-7xl px-4 pt-32 pb-16 sm:px-6">
       <p className="eyebrow">Parvati Valley</p>
-      <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">All stays in Kasol</h1>
+      <h1 className="font-display mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Rooms & dorms in Kalga</h1>
       <p className="mt-3 text-[14px] text-ink/60">
-        {filtered.length} stays · riverside tents to snowfall glass rooms · live availability on WhatsApp
+        {filtered.length} options · attached washrooms · geyser hot water · free Wi-Fi
       </p>
 
       <div className="mt-8 flex flex-col gap-4 rounded-[20px] border border-line bg-paper p-4 sm:p-5 lg:flex-row lg:items-center">
         <div className="flex flex-wrap gap-2">
-          {["All", "Tent", "Cottage", "Cabin", "Room", "Camp"].map((t) => (
+          {["All", "Room", "Dorm"].map((t) => (
             <button
               key={t}
               onClick={() => setType(t)}
@@ -201,7 +201,7 @@ export function WhyBook() {
               {[
                 "Real photos, real locations — no fake listings",
                 "Best-price promise — skip aggregator fees",
-                "Local team in Kasol for food, fire & treks",
+                "Local team in Kalga for food, fire & treks",
                 "Flexible dates — reschedule once for free",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3 text-[15px] font-medium text-white/90">
@@ -229,7 +229,7 @@ export function WhyBook() {
                 loading="lazy"
               />
               <div className="absolute bottom-4 left-4 rounded-2xl bg-paper px-5 py-4 card-shadow">
-                <div className="text-[13px] font-bold text-ink">Tonight in Kasol: 4°C · clear skies</div>
+                <div className="text-[13px] font-bold text-ink">Tonight in Kalga: clear skies</div>
                 <div className="text-[12px] font-medium text-moss">Perfect for bonfire + stargazing</div>
               </div>
             </div>
@@ -264,7 +264,7 @@ export function FinalCTA() {
               Book your stay
             </button>
             <a
-              href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I want to book a stay in Kasol.")}`}
+              href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/40 px-9 py-4 text-[15px] font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
@@ -311,10 +311,10 @@ export function Faq() {
   const [open, setOpen] = useState(0);
   const faqs = [
     { q: "How does WhatsApp booking work?", a: "Tap Book now, fill your name, dates and guests, then hit Confirm. WhatsApp opens with your enquiry pre-typed — just press send. We confirm availability within minutes (8am–11pm) and share payment link. No advance needed to enquire." },
-    { q: "Is there snowfall in Kasol?", a: "Yes — late Dec to Feb in Kasol town, longer at higher stays like our Glass Room and A-Frame. Mist and clouds are year-round, especially mornings July–September." },
-    { q: "Are tents warm in winter?", a: "Our premium tents have insulated canvas, thick blankets and room heaters. Riverside budget camp runs March–November; for Dec–Feb we recommend cottages, cabins or glass rooms with heating." },
+    { q: "What room types are available?", a: "We have two private room types: Room with Balcony at ₹1,300 per night (2 rooms) and Room without Balcony at ₹1,000 per night (3 rooms). We also have a dorm at ₹300 per person per night." },
+    { q: "What is included?", a: "Every option includes an attached washroom, geyser hot water and free Wi-Fi." },
     { q: "What is the cancellation policy?", a: "Free cancellation up to 5 days before check-in. 50% refund 2–5 days before. Date reschedule once is free up to 3 days before, subject to availability." },
-    { q: "How do I reach Kasol?", a: "Nearest airport Bhuntar (31 km, 1.5 hrs). Overnight Volvo from Delhi to Bhuntar/Kasol (12 hrs). We arrange pickup from Bhuntar or Kasol stand for Glass Room and Cottage guests." },
+    { q: "How do I reach Apple Cottage?", a: "Apple Cottage is in Kalga, Parvati Valley. Bhuntar is around 31 km away (about 1.5 hours), and pickup is available. From Kasol stand, most stays are a 5–10 minute walk away." },
   ];
   return (
     <section id="faq" className="bg-cream">
@@ -370,7 +370,7 @@ export function Location() {
             <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I need directions to " + SITE.name)}`} target="_blank" rel="noopener noreferrer" className="rounded-full bg-pine px-7 py-3.5 text-[14px] font-bold text-white transition-colors duration-300 hover:bg-pinedeep">
               Get directions
             </a>
-            <a href={`tel:+${SITE.whatsapp}`} className="flex items-center gap-2 rounded-full border border-ink px-7 py-3.5 text-[14px] font-bold transition-colors duration-300 hover:bg-ink hover:text-white">
+            <a href={`tel:${SITE.phoneHref}`} className="flex items-center gap-2 rounded-full border border-ink px-7 py-3.5 text-[14px] font-bold transition-colors duration-300 hover:bg-ink hover:text-white">
               <IconPhone className="h-4 w-4" /> Call us
             </a>
           </div>
@@ -378,7 +378,7 @@ export function Location() {
         <Reveal delay={120}>
           <div className="overflow-hidden rounded-[24px] border border-line">
             <iframe
-              title="Kasol map"
+              title="Kalga map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=77.30%2C32.00%2C77.35%2C32.03&layer=mapnik&marker=32.015%2C77.325"
               className="h-80 w-full sm:h-[480px]"
               loading="lazy"

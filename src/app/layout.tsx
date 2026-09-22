@@ -22,7 +22,7 @@ const sans = Inter({
 export const metadata: Metadata = {
   title: `${SITE.name} — Cozy Mountain Stays in Kalga, Parvati Valley`,
   description:
-    "Apple Cottage Homestay & Cafe Kalga offers cozy cottages and mountain stays in Kalga, Parvati Valley with easy access to Kasol, treks and valley views. Book in 2 minutes on WhatsApp.",
+    "Apple Cottage Homestay & Cafe in Kalga, Parvati Valley offers private rooms and dorm stays with hot water, attached washrooms and free Wi-Fi. Enquire on WhatsApp.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

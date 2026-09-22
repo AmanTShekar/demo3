@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 type BookingCtx = {
   isOpen: boolean;
@@ -23,13 +23,20 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const openBooking = useCallback((id?: string | null) => {
     setStayId(id ?? null);
     setIsOpen(true);
-    document.body.style.overflow = "hidden";
   }, []);
 
   const closeBooking = useCallback(() => {
     setIsOpen(false);
-    document.body.style.overflow = "";
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
   const value = useMemo(
     () => ({ isOpen, stayId, openBooking, closeBooking }),

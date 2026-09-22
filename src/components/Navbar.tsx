@@ -64,7 +64,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-2.5 md:flex">
           <a
-            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I want to book a stay in Kasol.")}`}
+            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
@@ -101,7 +101,7 @@ export default function Navbar() {
             <Link href="/" onClick={() => setOpen(false)}>Home</Link>
             <Link href="/stays" onClick={() => setOpen(false)}>All listings</Link>
             <a
-              href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I want to book a stay in Kasol.")}`}
+              href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-sm font-bold text-white"

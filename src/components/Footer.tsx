@@ -17,7 +17,7 @@ export default function Footer() {
           </p>
           <p className="mt-4 text-[13px] leading-relaxed text-white/65">{SITE.address}<br />{SITE.email} · {SITE.phoneDisplay}</p>
           <a
-            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I want to book a stay in Kasol.")}`}
+            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
             target="_blank"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-[13px] font-bold text-white hover:brightness-95"
           >

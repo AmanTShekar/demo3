@@ -4,7 +4,7 @@ import WhatsAppIcon from "./WhatsAppIcon";
 export default function FloatingWhatsApp() {
   return (
     <a
-      href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi! I want to book a stay in Kasol.")}`}
+      href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
