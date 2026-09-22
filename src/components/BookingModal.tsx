@@ -44,7 +44,11 @@ export default function BookingModal() {
 
   const selected = useMemo(() => STAYS.find((s) => s.id === stay) ?? STAYS[0], [stay]);
   const nights = nightsBetween(checkIn, checkOut);
-  const estimate = selected.price * nights * (selected.type === "Dorm" ? adults : 1);
+  const totalGuests = adults + children;
+  const units = selected.type === "Dorm" ? 1 : Math.max(1, Math.ceil(totalGuests / selected.guests));
+  const estimate = selected.price * nights * (selected.type === "Dorm" ? adults : units);
+  const unitLabel = selected.type === "Dorm" ? "dorm bed" : `room${units > 1 ? "s" : ""}`;
+  const exceedsListedInventory = selected.type === "Room" && units > selected.inventory;
 
   if (!isOpen) return null;
 
@@ -59,7 +63,7 @@ export default function BookingModal() {
     const link = buildWhatsAppLink({
       stayName: selected.name,
       stayCapacity: selected.guests,
-      units: 1,
+      units,
       name: name.trim(),
       phone: phone.trim(),
       checkIn,
@@ -112,10 +116,21 @@ export default function BookingModal() {
                   {nights} night{nights > 1 ? "s" : ""} · {adults} adult{adults > 1 ? "s" : ""}
                   {children ? ` + ${children} kid${children > 1 ? "s" : ""}` : ""}
                 </span>
-                <span className="font-extrabold text-white">
-                  Est. ₹{estimate.toLocaleString("en-IN")}
+                <span className="text-right font-extrabold text-white">
+                  <span className="block">Est. ₹{estimate.toLocaleString("en-IN")}</span>
+                  <span className="block text-[11px] font-semibold text-white/65">
+                    {selected.type === "Dorm"
+                      ? "per-person estimate"
+                      : `${units} room${units > 1 ? "s" : ""} for ${totalGuests} guest${totalGuests > 1 ? "s" : ""}`}
+                  </span>
                 </span>
               </div>
+              {exceedsListedInventory && (
+                <p className="mt-2.5 rounded-2xl border border-amber-900/10 bg-amber-50 px-4 py-3 text-[12px] font-semibold leading-relaxed text-amber-950/75">
+                  This group needs {units} rooms, while {selected.name} currently lists {selected.inventory} rooms.
+                  We&apos;ll confirm the best available arrangement with you on WhatsApp.
+                </p>
+              )}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -216,7 +231,7 @@ export default function BookingModal() {
               Confirm &amp; send on WhatsApp
             </button>
             <p className="text-center text-[12px] font-medium text-moss">
-              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · Dorm estimate is per adult · No advance to enquire
+              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · Rooms adjust automatically to occupancy · No advance to enquire
             </p>
           </div>
         ) : (
@@ -226,7 +241,7 @@ export default function BookingModal() {
             </div>
             <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight">Opening WhatsApp…</h3>
             <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-ink/60">
-              Your enquiry for <b className="text-ink">{selected.name}</b> ({nights} night{nights > 1 ? "s" : ""}, ₹
+              Your enquiry for <b className="text-ink">{selected.name}</b> ({units} {unitLabel}, {nights} night{nights > 1 ? "s" : ""}, ₹
               {estimate.toLocaleString("en-IN")}) is ready. Just press send in WhatsApp — we reply
               within minutes, 8am–11pm.
             </p>
@@ -236,7 +251,7 @@ export default function BookingModal() {
                   const link = buildWhatsAppLink({
                     stayName: selected.name,
                     stayCapacity: selected.guests,
-                    units: 1,
+                    units,
                     name: name.trim(),
                     phone: phone.trim(),
                     checkIn,
