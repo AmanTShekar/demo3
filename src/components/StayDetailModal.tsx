@@ -14,7 +14,7 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="stay-detail-title">
       <div className="absolute inset-0 bg-ink/60 fade-in" onClick={onClose} />
-      <div className="stay-detail-modal-scroll relative h-[100dvh] max-h-[100dvh] w-full max-w-3xl overflow-y-auto overscroll-contain rounded-none bg-paper modal-in sm:h-auto sm:max-h-[92vh] sm:rounded-[24px]">
+      <div className="stay-detail-modal-scroll relative h-[100dvh] max-h-[100dvh] w-[100dvw] max-w-none overflow-y-auto overscroll-contain rounded-none bg-paper modal-in sm:h-auto sm:max-h-[92vh] sm:w-full sm:max-w-3xl sm:rounded-[24px]">
         <div className="relative h-64 bg-sage sm:h-80">
           <Image src={stay.gallery[img]} alt={stay.name} fill className="object-cover" />
           <button

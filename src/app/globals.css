@@ -31,6 +31,19 @@ html {
   overflow-x: clip;
 }
 
+@media (max-width: 639px) {
+  html,
+  body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   background: #f6f2e8;
   color: #101b16;
