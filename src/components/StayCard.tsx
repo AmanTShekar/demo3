@@ -93,7 +93,7 @@ export default function StayCard({
             onClick={() => openBooking(stay.id)}
             className="rounded-full bg-brass px-4 py-3 text-[13px] font-bold text-white transition-transform duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
           >
-            Book now
+            Send enquiry
           </button>
         </div>
       </div>

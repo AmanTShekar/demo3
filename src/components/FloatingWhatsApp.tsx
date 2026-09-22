@@ -8,7 +8,7 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed right-4 bottom-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white card-shadow-lg hover:brightness-95 sm:right-6 sm:bottom-6"
+      className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white card-shadow-lg hover:brightness-95 sm:right-6 sm:bottom-6"
     >
       <WhatsAppIcon className="h-7 w-7" />
     </a>

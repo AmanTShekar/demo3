@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -36,6 +37,7 @@ body {
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 .font-display {
@@ -75,6 +77,34 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.enquiry-modal-scroll,
+.stay-detail-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #a3bcb4 transparent;
+}
+
+.enquiry-modal-scroll::-webkit-scrollbar,
+.stay-detail-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.enquiry-modal-scroll::-webkit-scrollbar-track,
+.stay-detail-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.enquiry-modal-scroll::-webkit-scrollbar-thumb,
+.stay-detail-modal-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #a3bcb4;
+}
+
+.enquiry-modal-scroll::-webkit-scrollbar-thumb:hover,
+.stay-detail-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #5c7167;
 }
 
 /* nav underline sweep */

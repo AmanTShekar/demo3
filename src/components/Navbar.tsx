@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
@@ -34,7 +35,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <img src="/apple_cottage.PNG" alt={SITE.name} className="h-10 w-10 rounded-2xl object-cover" />
+          <Image src="/apple_cottage.PNG" alt={SITE.name} width={40} height={40} className="h-10 w-10 rounded-2xl object-cover" />
           <span className="leading-tight">
             <span
               className={`font-display block text-[18px] font-semibold tracking-tight ${
@@ -80,7 +81,7 @@ export default function Navbar() {
             onClick={() => openBooking(null)}
             className="rounded-full bg-brass px-6 py-2.5 text-[13px] font-bold text-white hover:bg-brassdeep"
           >
-            Book now
+            Send enquiry
           </button>
         </div>
 
@@ -113,7 +114,7 @@ export default function Navbar() {
               onClick={() => { setOpen(false); openBooking(null); }}
               className="mt-1 rounded-full bg-brass px-5 py-3.5 text-sm font-bold text-white"
             >
-              Book now
+              Send enquiry
             </button>
           </div>
         </div>

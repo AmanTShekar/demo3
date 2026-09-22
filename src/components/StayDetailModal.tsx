@@ -12,9 +12,9 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
   if (!stay) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="stay-detail-title">
       <div className="absolute inset-0 bg-ink/60 fade-in" onClick={onClose} />
-      <div className="relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-[24px] bg-paper sm:rounded-[24px] modal-in">
+      <div className="stay-detail-modal-scroll relative h-[100dvh] max-h-[100dvh] w-full max-w-3xl overflow-y-auto overscroll-contain rounded-none bg-paper modal-in sm:h-auto sm:max-h-[92vh] sm:rounded-[24px]">
         <div className="relative h-64 bg-sage sm:h-80">
           <Image src={stay.gallery[img]} alt={stay.name} fill className="object-cover" />
           <button
@@ -43,7 +43,7 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
             {stay.location} · {stay.type}
           </p>
           <div className="mt-2 flex flex-wrap items-start justify-between gap-3">
-            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">{stay.name}</h2>
+            <h2 id="stay-detail-title" className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">{stay.name}</h2>
             <div className="text-right">
               <div className="text-2xl font-extrabold tracking-tight">₹{stay.price.toLocaleString("en-IN")}</div>
               <div className="text-[12px] font-medium text-moss">{stay.priceUnit} · {stay.inventory} available</div>

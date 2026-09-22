@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE, STAYS } from "@/lib/site";
 import WhatsAppIcon from "./WhatsAppIcon";
 
@@ -8,12 +9,12 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <img src="/apple_cottage.PNG" alt={SITE.name} className="h-10 w-10 rounded-2xl object-cover" />
+            <Image src="/apple_cottage.PNG" alt={SITE.name} width={40} height={40} className="h-10 w-10 rounded-2xl object-cover" />
             <span className="font-display text-xl font-semibold tracking-tight">{SITE.name}</span>
           </div>
           <p className="mt-4 max-w-sm text-[13.5px] leading-relaxed text-white/65">
-            {SITE.tagline}. Riverside tents, pine cottages and glass rooms — personally checked,
-            fairly priced, bookable on WhatsApp in 2 minutes.
+            {SITE.tagline}. Comfortable rooms and dorm stays in Kalga, with clear pricing
+            and a simple WhatsApp enquiry flow.
           </p>
           <p className="mt-4 text-[13px] leading-relaxed text-white/65">{SITE.address}<br />{SITE.email} · {SITE.phoneDisplay}</p>
           <a

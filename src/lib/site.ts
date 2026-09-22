@@ -165,10 +165,10 @@ export function buildWhatsAppLink(data: {
     return d ? `${day}-${m}-${y}` : "";
   };
   const lines = [
-    `*NEW BOOKING ENQUIRY — ${SITE.name}*`,
+    `*STAY ENQUIRY — ${SITE.name}*`,
     "------------------------------",
     `*Stay:* ${data.stayName} (${data.stayCapacity} pax/unit)`,
-    `*Units needed:* ${data.units}`,
+    `*Rooms / beds requested:* ${data.units}`,
     `*Check-in:* ${fmt(data.checkIn)}`,
     `*Check-out:* ${fmt(data.checkOut)}`,
     `*Nights:* ${data.nights}`,
@@ -177,7 +177,7 @@ export function buildWhatsAppLink(data: {
     `*Phone:* ${data.phone}`,
   ];
   if (data.email?.trim()) lines.push(`*Email:* ${data.email.trim()}`);
-  lines.push(`*Est. total:* ₹${data.estimate.toLocaleString("en-IN")}`, "------------------------------", "_Sent from the website booking form_", "Please confirm availability and price. Thank you!");
+  lines.push(`*Estimated total:* ₹${data.estimate.toLocaleString("en-IN")}`, "------------------------------", "_Sent from the website enquiry form_", "Please confirm availability and the current price. This is only an enquiry, not a confirmed booking.");
   if (data.requests?.trim()) lines.push(`*Special requests:* ${data.requests.trim()}`);
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }

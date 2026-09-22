@@ -28,7 +28,7 @@ export default function BookingModal() {
 
   useEffect(() => {
     if (isOpen) {
-      // Reset the form when a new booking session opens.
+      // Reset the form when a new enquiry session opens.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setStay(stayId ?? STAYS[0].id);
       setError("");
@@ -83,11 +83,11 @@ export default function BookingModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
       <div className="absolute inset-0 bg-ink/60 fade-in" onClick={closeBooking} />
-      <div className="relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-t-[24px] bg-paper sm:rounded-[24px] modal-in">
+      <div className="enquiry-modal-scroll relative h-[100dvh] max-h-[100dvh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-none bg-paper modal-in sm:h-auto sm:max-h-[92vh] sm:rounded-[24px]">
         <div className="sticky top-0 flex items-center justify-between border-b border-line bg-paper px-6 py-5 sm:px-8">
           <div>
-            <p className="eyebrow">WhatsApp booking</p>
-            <h2 className="font-display mt-1 text-[22px] font-semibold tracking-tight text-ink">Book your stay</h2>
+            <p className="eyebrow">WhatsApp enquiry</p>
+            <h2 className="font-display mt-1 text-[22px] font-semibold tracking-tight text-ink">Send a stay enquiry</h2>
           </div>
           <button
             onClick={closeBooking}
@@ -228,10 +228,10 @@ export default function BookingModal() {
               className="flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-6 py-4 text-[15px] font-bold text-white hover:brightness-95"
             >
               <WhatsAppIcon className="h-5 w-5" />
-              Confirm &amp; send on WhatsApp
+              Send enquiry on WhatsApp
             </button>
             <p className="text-center text-[12px] font-medium text-moss">
-              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · Rooms adjust automatically to occupancy · No advance to enquire
+              Check-in {SITE.checkIn} · Check-out {SITE.checkOut} · We&apos;ll confirm availability on WhatsApp · No advance required
             </p>
           </div>
         ) : (
@@ -241,9 +241,9 @@ export default function BookingModal() {
             </div>
             <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight">Opening WhatsApp…</h3>
             <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-ink/60">
-              Your enquiry for <b className="text-ink">{selected.name}</b> ({units} {unitLabel}, {nights} night{nights > 1 ? "s" : ""}, ₹
-              {estimate.toLocaleString("en-IN")}) is ready. Just press send in WhatsApp — we reply
-              within minutes, 8am–11pm.
+              Your enquiry for <b className="text-ink">{selected.name}</b> ({units} {unitLabel}, {nights} night{nights > 1 ? "s" : ""}, estimated ₹
+              {estimate.toLocaleString("en-IN")}) is ready. Just press send in WhatsApp — we&apos;ll reply
+              with availability and current pricing.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-2 sm:flex-row">
               <button

@@ -261,7 +261,7 @@ export function FinalCTA() {
               onClick={() => openBooking(null)}
               className="rounded-full bg-brass px-9 py-4 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
             >
-              Book your stay
+              Send a stay enquiry
             </button>
             <a
               href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
@@ -310,7 +310,7 @@ export function Reviews() {
 export function Faq() {
   const [open, setOpen] = useState(0);
   const faqs = [
-    { q: "How does WhatsApp booking work?", a: "Tap Book now, fill your name, dates and guests, then hit Confirm. WhatsApp opens with your enquiry pre-typed — just press send. We confirm availability within minutes (8am–11pm) and share payment link. No advance needed to enquire." },
+    { q: "How does a WhatsApp enquiry work?", a: "Tap Send a stay enquiry, fill in your name, dates and guests, then send the pre-filled message on WhatsApp. We reply with availability and current pricing. Sending an enquiry does not confirm a booking, and no advance payment is required to enquire." },
     { q: "What room types are available?", a: "We have two private room types: Room with Balcony at ₹1,300 per night (2 rooms) and Room without Balcony at ₹1,000 per night (3 rooms). We also have a dorm at ₹300 per person per night." },
     { q: "What is included?", a: "Every option includes an attached washroom, geyser hot water and free Wi-Fi." },
     { q: "What is the cancellation policy?", a: "Free cancellation up to 5 days before check-in. 50% refund 2–5 days before. Date reschedule once is free up to 3 days before, subject to availability." },

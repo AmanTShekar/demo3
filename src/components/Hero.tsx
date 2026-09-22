@@ -156,7 +156,7 @@ export default function Hero() {
             ["3", "Stay options"],
             ["5", "Private rooms"],
             ["₹300", "Dorm per person"],
-            ["2 min", "WhatsApp booking"],
+            ["2 min", "WhatsApp enquiry"],
           ].map(([n, l]) => (
             <div key={l} className="px-4 py-5 text-center">
               <div className="font-display text-[26px] font-semibold text-white">{n}</div>
