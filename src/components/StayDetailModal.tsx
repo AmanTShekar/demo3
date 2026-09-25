@@ -31,8 +31,13 @@ export default function StayDetailModal({ stay, onClose }: { stay: Stay | null; 
                 onClick={() => setImg(i)}
                 className={`h-12 w-16 overflow-hidden rounded-xl border-2 ${i === img ? "border-white" : "border-transparent opacity-70"}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={g} alt="" className="h-full w-full object-cover" />
+                <Image
+                  src={g}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>

@@ -34,13 +34,6 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <div>
-          <h4 className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-white/50">Explore</h4>
-          <ul className="mt-4 space-y-2.5 text-[14px]">
-            <li><Link href="/" className="text-white/80 hover:text-white">Home</Link></li>
-            <li><Link href="/stays" className="text-white/80 hover:text-white">All listings</Link></li>
-          </ul>
-        </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-[12px] font-medium text-white/50 sm:flex-row sm:px-6">

@@ -59,8 +59,8 @@ export default function Navbar() {
             solid ? "text-ink/70" : "text-white/85"
           }`}
         >
-          <Link href="/" className="hover:opacity-100 opacity-90 hover:underline underline-offset-8">HOME</Link>
-          <Link href="/stays" className="hover:opacity-100 opacity-90 hover:underline underline-offset-8">ALL LISTINGS</Link>
+          <Link href="/#gallery" className="hover:opacity-100 opacity-90 hover:underline underline-offset-8">GALLERY</Link>
+          <Link href="/#location" className="hover:opacity-100 opacity-90 hover:underline underline-offset-8">LOCATION</Link>
         </nav>
 
         <div className="hidden items-center gap-2.5 md:flex">
@@ -99,8 +99,8 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-line bg-paper px-5 py-5 md:hidden fade-in">
           <div className="flex flex-col gap-4 text-[15px] font-semibold text-ink/80">
-            <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-            <Link href="/stays" onClick={() => setOpen(false)}>All listings</Link>
+            <Link href="/#gallery" onClick={() => setOpen(false)}>Gallery</Link>
+            <Link href="/#location" onClick={() => setOpen(false)}>Location</Link>
             <a
               href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.directionsMessage)}`}
               target="_blank"

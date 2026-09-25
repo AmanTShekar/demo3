@@ -8,9 +8,6 @@ import { StayGrid, Stars } from "./StayCard";
 import { useBooking } from "./BookingContext";
 import Reveal from "./Reveal";
 import {
-  IconCloudMist,
-  IconMountain,
-  IconFlame,
   IconCompass,
   IconMapPin,
   IconCheck,
@@ -34,57 +31,6 @@ function Marquee() {
         ))}
       </div>
     </div>
-  );
-}
-
-export function Experience() {
-  const items = [
-    { t: "Mist mornings", d: "Clouds drift through your deck at 7am. Chai tastes better above them.", icon: <IconCloudMist className="h-5 w-5" /> },
-    { t: "Snow peaks", d: "Clear-day views of the snowline from every balcony and tent flap.", icon: <IconMountain className="h-5 w-5" /> },
-    { t: "Riverside bonfires", d: "Nightly bonfire, live grill and music by the Parvati river.", icon: <IconFlame className="h-5 w-5" /> },
-    { t: "Curated treks", d: "Chhalal, Tosh, Kheerganga and secret waterfall walks with guides.", icon: <IconCompass className="h-5 w-5" /> },
-  ];
-  return (
-    <section id="experience" className="bg-paper">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
-        <Reveal>
-          <p className="eyebrow">The Kalga experience</p>
-          <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-[42px] sm:leading-[1.1]">
-            Mountainside views, mist in the pines, snow when you&apos;re lucky.
-          </h2>
-        </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((it, i) => (
-            <Reveal key={it.t} delay={i * 70}>
-              <div className="h-full rounded-[20px] border border-line bg-cream p-6 transition-all duration-500 hover:-translate-y-1 hover:card-shadow">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pine text-white">
-                  {it.icon}
-                </div>
-                <h3 className="mt-4 text-[16px] font-bold tracking-tight">{it.t}</h3>
-                <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink/60">{it.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          {[
-            ["https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=800&auto=format&fit=crop", "Snowline mornings"],
-            ["https://images.unsplash.com/photo-1471115853179-bb1d604434e0?q=80&w=800&auto=format&fit=crop", "Bonfire nights"],
-            ["https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop", "Parvati riverside"],
-          ].map(([src, label], i) => (
-            <Reveal key={label} delay={i * 70}>
-              <div className="relative h-56 overflow-hidden rounded-[20px] img-zoom">
-                <Image src={src} alt={label} fill className="object-cover" loading="lazy" />
-                <div className="absolute bottom-3 left-3 rounded-full bg-paper px-4 py-2 text-[12px] font-bold text-ink">
-                  {label}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -300,43 +246,6 @@ export function Reviews() {
                 </figcaption>
               </figure>
             </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Faq() {
-  const [open, setOpen] = useState(0);
-  const faqs = [
-    { q: "How does a WhatsApp enquiry work?", a: "Tap Send a stay enquiry, fill in your name, dates and guests, then send the pre-filled message on WhatsApp. We reply with availability and current pricing. Sending an enquiry does not confirm a booking, and no advance payment is required to enquire." },
-    { q: "What room types are available?", a: "We have two private room types: Room with Balcony at ₹1,300 per night (2 rooms) and Room without Balcony at ₹1,000 per night (3 rooms). We also have a dorm at ₹300 per person per night." },
-    { q: "What is included?", a: "Every option includes an attached washroom, geyser hot water and free Wi-Fi." },
-    { q: "What is the cancellation policy?", a: "Free cancellation up to 5 days before check-in. 50% refund 2–5 days before. Date reschedule once is free up to 3 days before, subject to availability." },
-    { q: "How do I reach Apple Cottage?", a: "Apple Cottage is in Kalga, Parvati Valley. Bhuntar is around 31 km away (about 1.5 hours), and pickup is available. From Kasol stand, most stays are a 5–10 minute walk away." },
-  ];
-  return (
-    <section id="faq" className="bg-cream">
-      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
-        <Reveal>
-          <p className="eyebrow block text-center">Good to know</p>
-          <h2 className="font-display mt-3 text-center text-3xl font-semibold tracking-tight sm:text-[42px]">Questions, answered</h2>
-        </Reveal>
-        <div className="mt-10 space-y-3">
-          {faqs.map((f, i) => (
-            <div key={f.q} className={`overflow-hidden rounded-[18px] border bg-paper transition-colors duration-300 ${open === i ? "border-ink" : "border-line"}`}>
-              <button
-                onClick={() => setOpen(open === i ? -1 : i)}
-                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-[15px] font-bold tracking-tight"
-              >
-                {f.q}
-                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${open === i ? "bg-ink text-white" : "bg-cream"}`}>
-                  {open === i ? "−" : "+"}
-                </span>
-              </button>
-              {open === i && <p className="px-6 pb-6 text-[14px] leading-relaxed text-ink/65">{f.a}</p>}
-            </div>
           ))}
         </div>
       </div>

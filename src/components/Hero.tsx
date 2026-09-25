@@ -4,20 +4,24 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 import { useBooking } from "./BookingContext";
-import { IconStar, IconArrowDown, IconCalendar, IconUsers, IconFlame } from "./Icons";
-import { MountainSilhouette, Snowfall, MistBand } from "./Scene";
+import { IconStar, IconArrowDown, IconFlame } from "./Icons";
+import { MountainSilhouette, Snowfall, MistBand, Snowman } from "./Scene";
 
 export default function Hero() {
   const { openBooking } = useBooking();
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("2");
   const [y, setY] = useState(0);
+  const [fillingFastMonth, setFillingFastMonth] = useState("");
 
   useEffect(() => {
     const fn = () => setY(Math.min(window.scrollY, 600));
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  useEffect(() => {
+    const nextMonth = new Date();
+    nextMonth.setMonth(nextMonth.getMonth() + 1);
+    setFillingFastMonth(nextMonth.toLocaleString("en-IN", { month: "short" }));
   }, []);
 
   return (
@@ -37,12 +41,13 @@ export default function Hero() {
       <Snowfall count={24} />
       <MistBand />
       <MountainSilhouette />
+      <Snowman />
 
       <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-32 pb-16 sm:px-6 sm:pt-36">
         <div className="max-w-4xl">
           <div className="hero-rise inline-flex items-center gap-2.5 rounded-full bg-paper px-4 py-2 text-[11px] font-extrabold tracking-[0.18em] text-ink uppercase" style={{ animationDelay: "0ms" }}>
             <span className="pulse-soft h-2 w-2 rounded-full bg-leaf" />
-            Open now · Oct dates filling fast
+            Open now{fillingFastMonth ? ` · ${fillingFastMonth} dates filling fast` : ""}
           </div>
 
           <h1
@@ -87,55 +92,6 @@ export default function Hero() {
             </span>
             <span>Free reschedule once</span>
             <span>Pickup from Bhuntar available</span>
-          </div>
-        </div>
-
-        <div className="hero-rise mt-12 rounded-[20px] bg-paper p-3 card-shadow-lg sm:p-3.5" style={{ animationDelay: "450ms" }}>
-          <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-[1fr_1fr_1fr_auto]">
-            <label className="rounded-2xl border border-line bg-cream px-4 py-3">
-              <span className="flex items-center gap-1.5 text-[10px] font-extrabold tracking-[0.18em] text-moss uppercase">
-                <IconCalendar className="h-3.5 w-3.5" /> Check-in
-              </span>
-              <input
-                type="date"
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className="w-full bg-transparent text-[14px] font-bold text-ink outline-none"
-              />
-            </label>
-            <label className="rounded-2xl border border-line bg-cream px-4 py-3">
-              <span className="flex items-center gap-1.5 text-[10px] font-extrabold tracking-[0.18em] text-moss uppercase">
-                <IconCalendar className="h-3.5 w-3.5" /> Check-out
-              </span>
-              <input
-                type="date"
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className="w-full bg-transparent text-[14px] font-bold text-ink outline-none"
-              />
-            </label>
-            <label className="rounded-2xl border border-line bg-cream px-4 py-3">
-              <span className="flex items-center gap-1.5 text-[10px] font-extrabold tracking-[0.18em] text-moss uppercase">
-                <IconUsers className="h-3.5 w-3.5" /> Guests
-              </span>
-              <select
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="w-full bg-transparent text-[14px] font-bold text-ink outline-none"
-              >
-                <option value="1">1 guest</option>
-                <option value="2">2 guests</option>
-                <option value="3">3 guests</option>
-                <option value="4">4 guests</option>
-                <option value="6">5+ guests</option>
-              </select>
-            </label>
-            <button
-              onClick={() => openBooking(null)}
-              className="col-span-2 rounded-2xl bg-pine px-10 py-4 text-[15px] font-bold text-white hover:bg-pinedeep lg:col-span-1"
-            >
-              Check rooms
-            </button>
           </div>
         </div>
 

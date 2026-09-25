@@ -2,9 +2,9 @@
 export const SITE = {
   name: "Apple Cottage Homestay & Cafe",
   tagline: "A slower stay in the heart of Parvati Valley",
-  phoneDisplay: "+91 98765 43210",
-  phoneHref: "+919876543210",
-  whatsapp: "919876543210",
+  phoneDisplay: "+91 70185 88551",
+  phoneHref: "+917018588551",
+  whatsapp: "917018588551",
   email: "hello@applecottagekalga.com",
   location: "Kalga",
   address: "Kalga, Parvati Valley, Himachal Pradesh",
@@ -35,8 +35,11 @@ export type Stay = {
   bestFor: string[];
 };
 
-const img = (id: string) =>
-  `https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`;
+export const GALLERY_IMAGES = Array.from({ length: 23 }, (_, i) =>
+  `/gallery/apple-cottage-${String(i + 1).padStart(2, "0")}.jpg`,
+);
+
+const img = (index: number) => GALLERY_IMAGES[index - 1];
 
 const commonAmenities = ["Attached washroom", "Geyser (hot water)", "Free Wi-Fi"];
 
@@ -56,11 +59,11 @@ export const STAYS: Stay[] = [
     view: "Valley-facing balcony",
     location: "Apple Cottage, Kalga",
     tag: "Most requested",
-    image: img("photo-1518780664697-55e3ad937233"),
+    image: img(1),
     gallery: [
-      img("photo-1518780664697-55e3ad937233"),
-      img("photo-1520250497591-112f2f40a3f4"),
-      img("photo-1506905925346-21bda4d32df4"),
+      img(1),
+      img(2),
+      img(3),
     ],
     description:
       "A warm private room with a balcony for morning chai, mountain air and unhurried evenings in Kalga.",
@@ -82,11 +85,11 @@ export const STAYS: Stay[] = [
     view: "Quiet cottage setting",
     location: "Apple Cottage, Kalga",
     tag: "Best value",
-    image: img("photo-1540518614846-7eded433c457"),
+    image: img(4),
     gallery: [
-      img("photo-1540518614846-7eded433c457"),
-      img("photo-1560185008-b033106af5c3"),
-      img("photo-1505693416388-ac5ce068fe85"),
+      img(4),
+      img(5),
+      img(6),
     ],
     description:
       "A simple, comfortable private room for travellers who want a peaceful base without paying for a balcony.",
@@ -108,11 +111,11 @@ export const STAYS: Stay[] = [
     view: "Pine valley surroundings",
     location: "Apple Cottage, Kalga",
     tag: "Backpacker favourite",
-    image: img("photo-1523987355523-c7b5b0dd90a7"),
+    image: img(7),
     gallery: [
-      img("photo-1523987355523-c7b5b0dd90a7"),
-      img("photo-1471115853179-bb1d604434e0"),
-      img("photo-1500534623283-312aade485b7"),
+      img(7),
+      img(8),
+      img(9),
     ],
     description:
       "A friendly, comfortable dorm for solo travellers and backpackers looking to meet people and stay close to the trails.",

@@ -7,6 +7,13 @@ export function MountainSilhouette() {
           fill="#0b211c"
           opacity="0.92"
         />
+        <path
+          d="M205 65l65-31 42 18-25 4-17 15-18-8-20 12-15-8-18 10Z
+             M764 60l67-39 51 26-28 2-19 15-21-8-18 12-17-8-15 9Z
+             M1154 73l66-32 49 18-25 5-19 12-19-7-21 11-15-7-16 9Z"
+          fill="#f8fbf7"
+          opacity="0.9"
+        />
       </svg>
       <svg
         viewBox="0 0 1440 120"
@@ -22,7 +29,35 @@ export function MountainSilhouette() {
   );
 }
 
-export function Snowfall({ count = 26 }: { count?: number }) {
+export function Snowman() {
+  return (
+    <div className="pointer-events-none absolute right-5 bottom-6 z-[2] hidden sm:block" aria-hidden="true">
+      <svg viewBox="0 0 100 130" className="h-28 w-24 drop-shadow-lg">
+        <ellipse cx="50" cy="119" rx="34" ry="7" fill="#061612" opacity="0.35" />
+        <circle cx="50" cy="91" r="28" fill="#f8fbf7" />
+        <circle cx="50" cy="55" r="22" fill="#fff" />
+        <circle cx="43" cy="51" r="3" fill="#142c25" />
+        <circle cx="58" cy="51" r="3" fill="#142c25" />
+        <path d="M48 57l17 4-16 5z" fill="#d8863a" />
+        <path d="M41 67c6 5 13 5 19 0" fill="none" stroke="#142c25" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M30 73c12 7 29 7 40 0l-2 12c-12 6-26 6-36 0z" fill="#b94f42" />
+        <circle cx="50" cy="87" r="3" fill="#142c25" />
+        <circle cx="50" cy="101" r="3" fill="#142c25" />
+        <path d="M31 87L12 78M69 87l19-10" stroke="#7a4c2d" strokeWidth="3" strokeLinecap="round" />
+        <path d="M31 37c4-14 36-14 39 0z" fill="#b94f42" />
+        <path d="M27 38h47" stroke="#f8fbf7" strokeWidth="5" strokeLinecap="round" />
+      </svg>
+    </div>
+  );
+}
+
+export function Snowfall({
+  count = 26,
+  className = "absolute inset-0",
+}: {
+  count?: number;
+  className?: string;
+}) {
   const flakes = Array.from({ length: count }).map((_, i) => ({
     left: (i * 37 + 13) % 100,
     size: 3 + (i % 4),
@@ -31,7 +66,7 @@ export function Snowfall({ count = 26 }: { count?: number }) {
     opacity: 0.35 + ((i % 5) * 0.12),
   }));
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className={`pointer-events-none overflow-hidden ${className}`} aria-hidden="true">
       {flakes.map((f, i) => (
         <span
           key={i}

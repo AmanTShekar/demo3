@@ -152,7 +152,7 @@ export default function BookingModal() {
                 <input
                   value={phone}
                   onChange={(e) => setPhone(e.target.value.replace(/[^\d+\s]/g, ""))}
-                  placeholder="98765 43210"
+                  placeholder="70185 88551"
                   inputMode="tel"
                   maxLength={13}
                   className={inputCls}

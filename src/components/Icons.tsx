@@ -73,17 +73,6 @@ export function IconStar({ className = "h-4 w-4" }: P) {
   );
 }
 
-export function IconBed({ className }: P) {
-  return (
-    <S className={className}>
-      <path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8" />
-      <path d="M2 17h20" />
-      <path d="M6 10V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" />
-      <path d="M12 10V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" />
-    </S>
-  );
-}
-
 export function IconUsers({ className }: P) {
   return (
     <S className={className}>
@@ -91,17 +80,6 @@ export function IconUsers({ className }: P) {
       <circle cx="9" cy="7" r="4" />
       <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </S>
-  );
-}
-
-export function IconRuler({ className }: P) {
-  return (
-    <S className={className}>
-      <path d="M21.3 8.7 15.3 2.7a1 1 0 0 0-1.4 0l-11.2 11a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4 0l11.2-11a1 1 0 0 0 0-1.4Z" />
-      <path d="m7.5 10.5 2 2" />
-      <path d="m11 7 2 2" />
-      <path d="m14.5 3.5 2 2" />
     </S>
   );
 }
