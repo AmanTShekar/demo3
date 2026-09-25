@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <Snowfall count={18} className="fixed inset-0 z-40" />
+      <Snowfall count={28} className="pointer-events-none fixed inset-0 z-40 overflow-hidden" />
       <Hero />
       <StaysPreview onView={setViewing} />
       <Gallery />

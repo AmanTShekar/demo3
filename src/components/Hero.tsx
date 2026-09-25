@@ -38,10 +38,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-ink/55" />
       </div>
 
-      <Snowfall count={24} />
       <MistBand />
-      <MountainSilhouette />
-      <Snowman />
+      <MountainSilhouette className="pointer-events-none absolute inset-x-0 bottom-[140px] lg:bottom-[76px] z-[1]" />
+      <Snowman className="pointer-events-none absolute right-4 sm:right-8 lg:right-16 bottom-[136px] lg:bottom-[72px] z-[3]" />
 
       <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-32 pb-16 sm:px-6 sm:pt-36">
         <div className="max-w-4xl">

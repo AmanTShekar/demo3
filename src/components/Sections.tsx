@@ -136,7 +136,7 @@ export function WhyBook() {
   return (
     <>
       <section className="relative overflow-hidden bg-pine">
-        <Snowfall count={14} />
+        <Snowfall count={14} className="pointer-events-none absolute inset-0 overflow-hidden" />
         <div className="relative z-[1] mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <p className="eyebrow !text-white/60">Why book direct</p>
