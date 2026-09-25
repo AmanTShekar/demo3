@@ -39,8 +39,6 @@ export default function Hero() {
       </div>
 
       <MistBand />
-      <MountainSilhouette className="pointer-events-none absolute inset-x-0 bottom-[120px] sm:bottom-[76px] z-[1]" />
-      <Snowman className="pointer-events-none absolute right-3 sm:right-8 lg:right-16 bottom-[116px] sm:bottom-[72px] z-[3]" />
 
       <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-28 pb-10 sm:px-6 sm:pt-36 sm:pb-16">
         <div className="max-w-4xl">
@@ -105,7 +103,14 @@ export default function Hero() {
         </a>
       </div>
 
+      {/* 4 Features Bar with Mountain Silhouette & Snowman anchored to its dividing line */}
       <div className="relative z-[2] bg-pine/95 border-t border-white/10 backdrop-blur-sm">
+        {/* Mountain Silhouette and Snowman positioned strictly above the dividing line */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-full z-[1]">
+          <MountainSilhouette className="pointer-events-none block w-full" />
+          <Snowman className="pointer-events-none absolute right-3 sm:right-8 lg:right-16 bottom-0 z-[3]" />
+        </div>
+
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 sm:grid-cols-4 sm:divide-y-0">
           {[
             ["3", "Stay options"],

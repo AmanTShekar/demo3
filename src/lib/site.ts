@@ -9,8 +9,8 @@ export const SITE = {
   location: "Kalga",
   address: "Kalga, Parvati Valley, Himachal Pradesh",
   checkIn: "12:00 PM",
-  checkOut: "10:30 AM",
-  directionsMessage: "Hi! I need directions to Apple Cottage Kalga",
+  directionsMessage: "Hi! I would like to enquire about room availability and booking a stay at Apple Cottage, Kalga. Please share options, rates, and details.",
+  enquiryMessage: "Hi! I would like to enquire about room availability and booking a stay at Apple Cottage, Kalga. Please share options, rates, and details.",
 } as const;
 
 export type Stay = {
