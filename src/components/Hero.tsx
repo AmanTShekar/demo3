@@ -39,18 +39,18 @@ export default function Hero() {
       </div>
 
       <MistBand />
-      <MountainSilhouette className="pointer-events-none absolute inset-x-0 bottom-[140px] lg:bottom-[76px] z-[1]" />
-      <Snowman className="pointer-events-none absolute right-4 sm:right-8 lg:right-16 bottom-[136px] lg:bottom-[72px] z-[3]" />
+      <MountainSilhouette className="pointer-events-none absolute inset-x-0 bottom-[120px] sm:bottom-[76px] z-[1]" />
+      <Snowman className="pointer-events-none absolute right-3 sm:right-8 lg:right-16 bottom-[116px] sm:bottom-[72px] z-[3]" />
 
-      <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-32 pb-16 sm:px-6 sm:pt-36">
+      <div className="relative z-[2] mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-4 pt-28 pb-10 sm:px-6 sm:pt-36 sm:pb-16">
         <div className="max-w-4xl">
-          <div className="hero-rise inline-flex items-center gap-2.5 rounded-full bg-paper px-4 py-2 text-[11px] font-extrabold tracking-[0.18em] text-ink uppercase" style={{ animationDelay: "0ms" }}>
+          <div className="hero-rise inline-flex items-center gap-2 rounded-full bg-paper px-3.5 py-1.5 sm:px-4 sm:py-2 text-[10.5px] sm:text-[11px] font-extrabold tracking-[0.18em] text-ink uppercase" style={{ animationDelay: "0ms" }}>
             <span className="pulse-soft h-2 w-2 rounded-full bg-leaf" />
             Open now{fillingFastMonth ? ` · ${fillingFastMonth} dates filling fast` : ""}
           </div>
 
           <h1
-            className="font-display hero-rise mt-6 text-[42px] leading-[1.02] font-semibold tracking-tight text-white sm:text-7xl"
+            className="font-display hero-rise mt-4 sm:mt-6 text-[34px] leading-[1.05] font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "90ms" }}
           >
             Wake up in
@@ -59,31 +59,31 @@ export default function Hero() {
           </h1>
 
           <p
-            className="hero-rise mt-5 max-w-xl text-[15px] leading-relaxed text-white/80 sm:text-lg"
+            className="hero-rise mt-4 sm:mt-5 max-w-xl text-[14.5px] sm:text-lg leading-relaxed text-white/80"
             style={{ animationDelay: "180ms" }}
           >
             {SITE.tagline}. Private rooms and a friendly dorm with attached washrooms, geyser hot
             water and free Wi-Fi. From ₹300 per person, confirmed on WhatsApp in minutes.
           </p>
 
-          <div className="hero-rise mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "270ms" }}>
+          <div className="hero-rise mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3" style={{ animationDelay: "270ms" }}>
             <button
               onClick={() => openBooking(null)}
-              className="flex items-center gap-2 rounded-full bg-brass px-8 py-4 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-2 rounded-full bg-brass px-7 py-3.5 sm:px-8 sm:py-4 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brassdeep hover:-translate-y-0.5"
             >
               <IconFlame className="h-4.5 w-4.5" />
               Check availability
             </button>
             <a
               href="#stays"
-              className="rounded-full border border-white/40 px-8 py-4 text-[15px] font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
+              className="flex items-center justify-center rounded-full border border-white/40 px-7 py-3.5 sm:px-8 sm:py-4 text-[15px] font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
             >
               Explore rooms
             </a>
           </div>
 
           <div
-            className="hero-rise mt-7 flex flex-wrap items-center gap-x-7 gap-y-2 text-[13px] font-semibold text-white/75"
+            className="hero-rise mt-6 sm:mt-7 flex flex-wrap items-center gap-x-5 sm:gap-x-7 gap-y-2 text-[12px] sm:text-[13px] font-semibold text-white/75"
             style={{ animationDelay: "360ms" }}
           >
             <span className="inline-flex items-center gap-1.5">
@@ -105,17 +105,22 @@ export default function Hero() {
         </a>
       </div>
 
-      <div className="relative z-[2] bg-pine">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 px-4 sm:px-6 lg:grid-cols-4">
+      <div className="relative z-[2] bg-pine/95 border-t border-white/10 backdrop-blur-sm">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 sm:grid-cols-4 sm:divide-y-0">
           {[
             ["3", "Stay options"],
             ["5", "Private rooms"],
             ["₹300", "Dorm per person"],
             ["2 min", "WhatsApp enquiry"],
-          ].map(([n, l]) => (
-            <div key={l} className="px-4 py-5 text-center">
-              <div className="font-display text-[26px] font-semibold text-white">{n}</div>
-              <div className="mt-0.5 text-[10.5px] font-bold tracking-[0.2em] text-white/60 uppercase">{l}</div>
+          ].map(([n, l], idx) => (
+            <div
+              key={l}
+              className={`px-3 py-3 sm:px-4 sm:py-5 text-center ${
+                idx >= 2 ? "border-t border-white/10 sm:border-t-0" : ""
+              }`}
+            >
+              <div className="font-display text-[22px] sm:text-[26px] font-semibold text-white">{n}</div>
+              <div className="mt-0.5 text-[9.5px] sm:text-[10.5px] font-bold tracking-[0.16em] sm:tracking-[0.2em] text-white/60 uppercase">{l}</div>
             </div>
           ))}
         </div>

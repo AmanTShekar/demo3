@@ -19,7 +19,7 @@ export function MountainSilhouette({
       <svg
         viewBox="0 0 1440 260"
         preserveAspectRatio="none"
-        className="block h-[150px] w-full sm:h-[210px] md:h-[250px]"
+        className="block h-[125px] w-full sm:h-[210px] md:h-[250px]"
       >
         <defs>
           {/* Subtle gradient for distant alpine atmosphere */}
@@ -204,7 +204,7 @@ export function MountainSilhouette({
  * - Subtle idle breathing animation and hover delight
  */
 export function Snowman({
-  className = "pointer-events-none absolute right-4 sm:right-10 md:right-16 bottom-[140px] lg:bottom-[76px] z-[3]",
+  className = "pointer-events-none absolute right-3 sm:right-8 lg:right-16 bottom-[116px] sm:bottom-[70px] z-[3]",
 }: {
   className?: string;
 }) {
@@ -212,12 +212,12 @@ export function Snowman({
 
   return (
     <div
-      className={`group select-none drop-shadow-2xl transition-transform duration-300 hover:scale-105 ${className}`}
+      className={`group select-none drop-shadow-xl transition-transform duration-300 hover:scale-105 ${className}`}
       aria-label="Apple Cottage Snowman"
     >
       <svg
         viewBox="0 0 160 210"
-        className="h-32 w-28 sm:h-40 sm:w-36 md:h-44 md:w-40 animate-snowman-idle"
+        className="h-24 w-20 sm:h-36 sm:w-32 md:h-44 md:w-40 animate-snowman-idle"
         style={{ overflow: "visible" }}
       >
         <defs>

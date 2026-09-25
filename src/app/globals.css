@@ -51,6 +51,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .font-display {
@@ -273,6 +275,17 @@ body {
   top: 0;
   pointer-events: none;
   will-change: transform, opacity;
+}
+
+@media (max-width: 640px) {
+  /* Reduce particle workload by 50% on mobile for battery saving and 60fps smoothness */
+  .snow-particle:nth-child(even) {
+    display: none !important;
+  }
+  .snow-particle {
+    will-change: transform;
+    transform: translateZ(0);
+  }
 }
 
 .animate-snowman-idle {
